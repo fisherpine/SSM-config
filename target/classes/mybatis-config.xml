@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <!--配置之后可以看见sql-->
+    </settings>
+    <!--配置数据源，交给Spring去做-->
+    <typeAliases>
+        <!-- 批量别名定义,指定包名，mybatis自动扫描包中的pojo类，自动定义别名，别名是类名(首字母大写或小写都可以,一般用小写) -->
+        <package name="com.ggbz.pojo"/>
+        <!--给谁用？给mapper.xml文件用，给-->
+    </typeAliases>
+
+
+    <mappers>
+        <!-- 通过mapper接口加载映射文件 -->
+        <!--为了执行sql-->
+        <!--名字一样就用class-->
+        <!--名字不一样就用resource-->
+        <!--xml的地址-->
+        <mapper class="com.ggbz.dao.BookMapper"/>
+
+        <!--如果接口文件与映射文件不在同一路径下，仅能用resouce加载映射文件-->
+    </mappers>
+</configuration>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ggbz.dao.BookMapper">
+    <!--#{}是预编译处理，是占位符，${}是字符串替换，是拼接符-->
+    <!--不使用@Param注解时，参数只能有一个，并且是Javabean。在SQL语句里可以引用JavaBean的属性，而且只能引用JavaBean的属性-->
+    <!-- 插入对象是的传入参数为整个实体类，相对应的参数要与实体中属性相同 -->
+    <insert id="addBook" parameterType="Books">
+        insert into ssmbuild.books (bookName,bookCounts,detail)
+        values (#{bookName},#{bookCounts},#{detail});
+    </insert>
+
+    <!--当你使用了使用@Param注解来声明参数时，如果使用 #{} 或 ${} 的方式都可以。-->
+    <!--当你不使用@Param注解来声明参数时，必须使用使用 #{}方式。如果使用 ${} 的方式，会报错。-->
+    <delete id="deleteBookById" parameterType="int">
+        delete from ssmbuild.books
+        where bookID=#{bookId};
+    </delete>
+
+    <update id="updateBook" parameterType="books">
+        update ssmbuild.books
+        set bookName=#{bookName},bookCounts=#{bookCounts},detail=#{detail}
+        where bookID=#{bookID};
+    </update>
+    
+    <select id="queryBookById" parameterType="int" resultType="books">
+        select bookID,bookName,bookCounts,detail
+        from ssmbuild.books
+        where bookID=#{bookId};
+    </select>
+
+    <!-- 查询所有结果时，因为是将一个一个的USer实体添加到list中，
+   所以在指定其返回结果参数只需要指定为返回实体就可以了 -->
+    <select id="queryAllBook" resultType="books">
+        select bookID,bookName,bookCounts,detail
+        from ssmbuild.books;
+   </select>
+    <select id="queryBookByName" resultType="com.ggbz.pojo.Books">
+        select * from ssmbuild.books where bookName=#{bookName}
+    </select>
+
+
+</mapper>

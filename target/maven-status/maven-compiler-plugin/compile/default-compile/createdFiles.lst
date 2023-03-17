@@ -1,0 +1,5 @@
+com\ggbz\pojo\Books.class
+com\ggbz\dao\BookMapper.class
+com\ggbz\service\BookServiceImpl.class
+com\ggbz\controller\BookController.class
+com\ggbz\service\BookService.class
